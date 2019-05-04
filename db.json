@@ -1,0 +1,17 @@
+{
+  "offline": [],
+  "online": [],
+  "accounts": [
+    {
+      "heronum": "",
+      "numdevices": "",
+      "mail": "",
+      "listdevices": ""
+    }
+  ],
+  "rerunaccount": [],
+  "newaccount": [],
+  "temp": [],
+  "alldevices": [],
+  "other": []
+}
