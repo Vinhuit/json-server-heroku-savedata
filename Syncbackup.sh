@@ -2,11 +2,11 @@
 
 # make sure you gave a number of seconds:
 [ 0$1 -gt 0 ] || exit
-
+    SECONDS=0 
     cd /home/node
     SOURCE="/home/node"
     SOURCE2="headless/.mozilla/."
-    #BACKUP="gs://jsonserver-b9334.appspot.com"
+    #BACKUP2="gs://jsonserver-b9334.appspot.com/db_bk.json"
     echo $BACKUP
     DESTINATION="db.json"
     FULLBACKUP="$BACKUP/"$DESTINATION
@@ -27,7 +27,12 @@ while true; do
     else
 	echo "Same Data"
     fi
-    echo "Done Backup"
+    
     sleep $1
+    if [ $SECONDS == 3600 ]; then
+        cp db.json db_bk.json
+       ./gsutil/gsutil cp db_bk.json $BACKUP
+    fi
+    echo "Done Backup"
 done
 
