@@ -1,0 +1,10 @@
+{
+  "name": "jsonserver-heroku",
+  "description": "Deploy json-server to Heroku and save database to firebase.",
+  "stack": "container",
+  "env": {
+    "BACKUP": {
+      "description": "path to database like : gs://jsonserver-b9334.appspot.com/db.json and data need to set public on firebase"
+    }
+  }
+}
