@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # make sure you gave a number of seconds:
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-405.0.0-linux-x86_64.tar.gz
+tar xvf google-cloud-cli-405.0.0-linux-x86_64.tar.gz
 [ 0$1 -gt 0 ] || exit
     SECONDS=0 
     cd /home/node
@@ -10,7 +12,7 @@
     echo $BACKUP
     DESTINATION="db.json"
     FULLBACKUP="$BACKUP/"$DESTINATION
-    ./gsutil/gsutil cp $FULLBACKUP /home/node
+    ./google-cloud-sdk/bin/gsutil cp $FULLBACKUP /home/node
     DATE=$(date -r db.json +%s)
     #tar -xvzf $DESTINATION
     #cp -rf $SOURCE2 $SOURCE
@@ -22,7 +24,7 @@ while true; do
     #tar -zcvf $DESTINATION $SOURCE
     DATE2=$(date -r db.json +%s)
     if [ $DATE != $DATE2 ]; then
-	./gsutil/gsutil cp $DESTINATION $BACKUP
+	./google-cloud-sdk/bin/gsutil cp $DESTINATION $BACKUP
 	DATE=$DATE2
     else
 	echo "Same Data"
@@ -31,7 +33,7 @@ while true; do
     sleep $1
     if [ $SECONDS == 3600 ]; then
         cp db.json db_bk.json
-       ./gsutil/gsutil cp db_bk.json $BACKUP
+       ./google-cloud-sdk/bin/gsutil cp db_bk.json $BACKUP
     fi
     echo "Done Backup"
 done
